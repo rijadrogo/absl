@@ -1,12 +1,7 @@
 // This is an open source non-commercial project. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -182,6 +177,8 @@ public class ArrayHashMap<K, V> extends HashMap<K, V> implements Iterable<Map.En
     }
 
     public static void main(String[] args) {
+        Optional<String> op = Optional.ofNullable("Dasdas");
+
         ArrayList<Integer> a = new ArrayList<>();
         a.add(6);
         a.add(2);
@@ -192,10 +189,6 @@ public class ArrayHashMap<K, V> extends HashMap<K, V> implements Iterable<Map.En
         a.add(9);
         a.add(7);
         a.subList(0, 3).clear();
-
-        for (var e : a) {
-            System.out.println(e);
-        }
     }
 
     private class MapListIterator implements Iterator<Map.Entry<K, V>> {

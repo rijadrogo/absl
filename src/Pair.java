@@ -23,6 +23,7 @@ public class Pair<T, U> {
         return new Pair<>(first, second);
     }
 
+    @Contract(value = "_ -> param1", pure = true)
     public static <U, V> @NotNull Pair<U, V> of(final @NotNull Pair<U, V> pair) {
         return pair;
     }
@@ -46,6 +47,6 @@ public class Pair<T, U> {
     @Override
     public String toString() {
         return "Pair{"
-            + "first=" + first + ", second=" + second + '}';
+            + "first= " + first + ", second= " + second + '}';
     }
 }

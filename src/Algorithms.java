@@ -391,7 +391,7 @@ public final class Algorithms {
 
     public static <T> boolean allMatch(
         final Iterator<T> iterator, final @NotNull Predicate<T> predicate) {
-        return findIfNot(iterator, predicate).isEmpty();
+        return findIfNot(iterator, predicate).isPresent();
     }
 
     /**
