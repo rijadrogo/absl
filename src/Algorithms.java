@@ -125,7 +125,8 @@ public final class Algorithms {
         final ArrayHashMap<T, Integer> map = new ArrayHashMap<>(collection.size());
         collection.forEach(elem
             -> map.compute(elem, (key, value) -> key != null && value != null ? value + 1 : 1));
-        return firstNonRepeatingElementImpl(map);
+
+        return Optional.of(firstNonRepeatingElementImpl(map));
     }
 
     /**
@@ -143,7 +144,7 @@ public final class Algorithms {
         iterator.forEachRemaining(elem
             -> map.compute(elem, (key, value) -> key != null && value != null ? value + 1 : 1));
 
-        return firstNonRepeatingElementImpl(map);
+        return Optional.of(firstNonRepeatingElementImpl(map));
     }
 
     /**
@@ -151,13 +152,13 @@ public final class Algorithms {
      * @param <T> Any type that is hashable
      * @return Optional of first element that occurred only once
      */
-    private static <T> Optional<T> firstNonRepeatingElementImpl(
+    private static <T> T firstNonRepeatingElementImpl(
         final @NotNull ArrayHashMap<T, Integer> map) {
         return map.stream()
             .filter(elem -> elem.getValue() == 1)
             .findFirst()
-            .or(() -> Optional.of(map.iterator().next()))
-            .map(Map.Entry::getKey);
+            .orElseGet(() -> map.iterator().next())
+            .getKey();
     }
 
     /**
